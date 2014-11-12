@@ -134,6 +134,28 @@ int msg_control_set (struct msghdr *hdr,
     return 0;
 }
 
+int msg_control_get_int (struct msghdr *hdr,
+     int level, int type, int *result)
+{
+    int rc;
+    void *data;
+    size_t size;
+
+    rc = msg_control_get (hdr, level, type, &data, &size);
+    if (rc < 0)
+        return rc;
+    if (size != sizeof (int))
+        return -1;
+    if (result)
+        *result = *((int*) data);
+    return 0;
+}
+
+int msg_control_set_int (struct msghdr *hdr, int level, int type, int value)
+{
+    return msg_control_set (hdr, level, type, &value, sizeof (int));
+}
+
 ssize_t msg_control_send (int fd, struct msghdr *hdr, int flags)
 {
     return sendmsg (fd, hdr, flags);

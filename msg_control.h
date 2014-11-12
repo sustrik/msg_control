@@ -50,6 +50,13 @@ int msg_control_get (struct msghdr *hdr,
 int msg_control_set (struct msghdr *hdr,
      int level, int type, void *data, size_t size);
 
+/* Same as msg_control_get, customised for properties of type int. */
+int msg_control_get_int (struct msghdr *hdr,
+     int level, int type, int *result);
+
+/* Same as msg_control_set, customised for properties of type int. */
+int msg_control_set_int (struct msghdr *hdr, int level, int type, int value);
+
 /* Remove the property specified by level and type from the buffer. Returns 0
    in case of success, -1 if the property in question is not present. */
 int msg_control_rm (struct msghdr *hdr, int level, int type);

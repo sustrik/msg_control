@@ -58,7 +58,7 @@ int msg_control_rm (struct msghdr *hdr, int level, int type);
 ssize_t msg_control_send (int fd, struct msghdr *hdr, int flags);
 
 /* Use this function instead of recvmsg(2). */
-ssize_t msg_control_recv (int fd, struct msghdr *hdr, int *flags);
+ssize_t msg_control_recv (int fd, struct msghdr *hdr, int flags);
 
 #endif
 
